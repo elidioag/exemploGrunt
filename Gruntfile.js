@@ -2,12 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        globals: {
-          jQuery: true
-        }
-      }
+      all: ['Gruntfile.js', 'html/dist/principal.js', 'html/dist/bootstrap/js/*.js', 'html/dist/jquery/*.js', 'html/dist/jquery-maskmoney/*.js'] 
     },
     availabletasks: {           // task
       tasks: {}               // target
@@ -67,14 +62,25 @@ module.exports = function(grunt) {
     },
     concat: {
       js: {
-        src: ['html/dist/bootstrap/js/*.js','html/dist/jquery/*.js', 'html/dist/jquery-maskmoney/*.js', '!*.min.js', '!*.min.js.map'],
+        src: ['html/dist/bootstrap/js/*.js','html/dist/jquery/*.js', 'html/dist/jquery-maskmoney/*.js', 'html/dist/*.js', '!*.min.js', '!*.min.js.map'],
         dest: 'html/dist/all.js',
       },
       css: {
         src: ['html/dist/bootstrap/css/*.css', 'html/dist/*.css', '!*.min.css', '!*.min.css.map'],
         dest: 'html/dist/all.css',
       }      
-    },    
+    },
+    uglify: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'html/dist',
+          src: ['*.js', '!*.min.js'],
+          dest: 'html/dist',
+          ext: '.min.js'
+        }]
+      }
+    }        
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -86,6 +92,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-checkbranch');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master', 'bower', 'concat']);  
+  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'clean', 'checkbranch:master', 'bower', 'concat', 'cssmin','uglify']);  
 };
