@@ -4,6 +4,11 @@ module.exports = function(grunt) {
     jshint: {
       all: ['Gruntfile.js', 'html/dist/principal.js', 'html/dist/bootstrap/js/*.js', 'html/dist/jquery/*.js', 'html/dist/jquery-maskmoney/*.js'] 
     },
+    csslint: {
+      lax: {
+        src: ['html/dist/principal.css', 'html/dist/bootstrap/css/*.css']
+      }
+    },
     availabletasks: {           // task
       tasks: {}               // target
     },
@@ -93,6 +98,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
 
-  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'clean', 'checkbranch:master', 'bower', 'concat', 'cssmin','uglify']);  
+  grunt.registerTask('default', ['availabletasks', 'copy', 'sass', 'clean', 'checkbranch:master', 'bower', 'concat', 'cssmin','uglify']);  
+  grunt.registerTask('validators', ['jshint', 'csslint']);
 };
