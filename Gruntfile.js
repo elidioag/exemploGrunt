@@ -12,14 +12,6 @@ module.exports = function(grunt) {
     availabletasks: {           // task
       tasks: {}               // target
     },
-    bower: {
-      dev: {
-        dest: 'dest/path'
-      },
-      install: {
-
-      }
-    },
     sass: {
       dist: {
         files: [{
@@ -64,7 +56,15 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       }
-    }        
+    },
+    bower: {
+      install: {
+        options: {
+          targetDir: 'bower_components',
+          install: true,
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -73,7 +73,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-checkbranch');  
+  grunt.loadNpmTasks('grunt-checkbranch');
+  grunt.loadNpmTasks('grunt-bower-task');
 
-  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master']);  
+  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master', 'bower']);  
 };
