@@ -6,6 +6,7 @@
   "devDependencies": {
     "grunt": "^1.0.2",
     "grunt-available-tasks": "^0.6.3",
+    "grunt-checkbranch": "^1.0.4",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^2.2.1",

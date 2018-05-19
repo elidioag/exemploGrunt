@@ -72,7 +72,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');  
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-checkbranch');  
 
-  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean']);  
+  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master']);  
 };
