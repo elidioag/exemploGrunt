@@ -64,7 +64,17 @@ module.exports = function(grunt) {
           install: true,
         }
       }
-    }
+    },
+    concat: {
+      js: {
+        src: ['html/dist/bootstrap/js/*.js','html/dist/jquery/*.js', 'html/dist/jquery-maskmoney/*.js', '!*.min.js', '!*.min.js.map'],
+        dest: 'html/dist/all.js',
+      },
+      css: {
+        src: ['html/dist/bootstrap/css/*.css', 'html/dist/*.css', '!*.min.css', '!*.min.css.map'],
+        dest: 'html/dist/all.css',
+      }      
+    },    
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -75,6 +85,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-checkbranch');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master', 'bower']);  
+  grunt.registerTask('default', ['availabletasks', 'copy', 'jshint', 'sass', 'cssmin', 'clean', 'checkbranch:master', 'bower', 'concat']);  
 };
